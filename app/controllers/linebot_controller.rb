@@ -31,16 +31,15 @@ class LinebotController < ApplicationController
           min_per = 30
           case input
           when /.*(明日|あした).*/
-            weather = doc.elements[xpath + 'info[2]/rainfallchance/weather'].text
             per06to12 = doc.elements[xpath + 'info[2]/rainfallchance/period[2]'].text
             per12to18 = doc.elements[xpath + 'info[2]/rainfallchance/period[3]'].text
             per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "明日の天気は#{weather}\n 雨が降るみたい、傘が必要かも\n 現在の降水確率\n 6〜12時 #{per06to12}%\n 12〜18時 #{per12to18}％\n 18〜24時 #{per18to24}％"
+                "明日は雨が降るみたい、傘が必要かも\n 現在の降水確率\n 6〜12時 #{per06to12}%\n 12〜18時 #{per12to18}％\n 18〜24時 #{per18to24}％"
             else
               push =
-                "明日の天気は#{weather}\n 雨は降らないと思う"
+                "明日は雨は降らないと思う"
             end
           when /.*(明後日|あさって).*/
             per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
