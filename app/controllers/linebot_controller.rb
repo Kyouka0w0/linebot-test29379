@@ -30,47 +30,41 @@ class LinebotController < ApplicationController
 
           min_per = 30
           case input
-          when /.*(明日|あした|おやす).*/
-            weather = doc.elements[xpath + 'info[2]/rainfallchance/weather'].text
+          when /.*(明日|あした).*/
             per06to12 = doc.elements[xpath + 'info[2]/rainfallchance/period[2]'].text
             per12to18 = doc.elements[xpath + 'info[2]/rainfallchance/period[3]'].text
             per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "明日の天気は#{weather}\n 傘が必要かも\n 現在の降水確率\n 6〜12時 #{per06to12}%\n 12〜18時 #{per12to18}％\n 18〜24時 #{per18to24}％"
+                "明日は雨が降るみたい、傘が必要かも\n 現在の降水確率\n 6〜12時 #{per06to12}%\n 12〜18時 #{per12to18}％\n 18〜24時 #{per18to24}％"
             else
               push =
-                "明日の天気は#{weather}\n 雨は降らないと思う"
+                "明日、雨は降らないと思う"
             end
           when /.*(明後日|あさって).*/
-            weather = doc.elements[xpath + 'info[3]/rainfallchance/weather'].text
             per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]l'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "明後日の天気は#{weather}\n 雨が降るかも"
+                "明後日、雨が降るかも"
             else
               push =
-                "明後日の天気は#{weather}\n 雨は降らないと思う"
+                "明後日、雨は降らないと思う"
             end
           when /.*(可愛い|かわいい|好き|すき).*/
             push =
               "♪"
-          when /.*(説明|使い方).*/
-              push = 
-              "東京の天気を答えるよ〜、明日・明後日と入力するとお返事できる\n 日付は対応していないからまだわからない\n （降水確率は毎朝6時に更新）"
           else
-            weather = doc.elements[xpath + 'info/rainfallchance/weather'].text
             per06to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "今日の天気は#{weather}\n 雨が降りそう、傘があった方が安心かも\n 6〜12時 #{per06to12}％\n 12〜18時　 #{per12to18}％\n 18〜24時 #{per18to24}％"
+                "今日は雨が降りそう、傘があった方が安心だね\n 6〜12時 #{per06to12}％\n 12〜18時　 #{per12to18}％\n 18〜24時 #{per18to24}％"
             else
               push =
-                "今日の天気は#{weather}\n 雨、降らなさそう"
+                "今日は雨、降らなさそう"
             end
           end
           # テキスト以外（画像等）のメッセージが送られた場合
