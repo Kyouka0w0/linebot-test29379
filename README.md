@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LineBot壱号
 
-Things you may want to cover:
+東京の降水確率を取得し雨が降るかどうかを返してくれる。
+(追加予定機能・天気の情報取得、サーバー変更予定)
 
-* Ruby version
+デプロイ： https://linebot-test29379.herokuapp.com/ 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+利用方法：
