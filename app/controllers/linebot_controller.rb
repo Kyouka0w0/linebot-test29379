@@ -57,9 +57,6 @@ class LinebotController < ApplicationController
           when /.*(可愛い|かわいい|好き|すき).*/
             push =
               "♪"
-          when /.*().*/
-              push =
-                "♪"
           else
             weather = doc.elements[xpath + 'info/weather'].text
             per06to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
